@@ -7,12 +7,12 @@ describe('cv1-xfedunchyk', () => {
       components: [Cv1Xfedunchyk],
       html: `<cv1-xfedunchyk></cv1-xfedunchyk>`,
     });
-    expect(page.root).toEqualHtml(`
-      <cv1-xfedunchyk>
-        <mock:shadow-root>
-          <slot></slot>
-        </mock:shadow-root>
-      </cv1-xfedunchyk>
-    `);
+    
+      const wlList = page.rootInstance as Cv1Xfedunchyk;
+      const expectedPatients = wlList?.waitingPatients?.length
+
+      const items = page.root.shadowRoot.querySelectorAll("md-list-item");
+      expect(items.length).toEqual(expectedPatients);
+
   });
 });
